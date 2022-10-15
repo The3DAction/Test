@@ -8,6 +8,7 @@ namespace CubeMoving
 		public InputField spawnInterval;
 		public InputField movementSpeed;
 		public InputField destroyDistance;
+		public Material cubeMaterial;
 
 		private float interval;
 		private float speed;
@@ -39,6 +40,7 @@ namespace CubeMoving
 		{
 			GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			CubeMovement cubeMovement = cube.AddComponent<CubeMovement>();
+			cube.GetComponent<Renderer>().material = cubeMaterial;
 			cube.transform.SetPositionAndRotation(transform.position, transform.rotation);
 			cubeMovement.Move(speed, distance);
 		}
