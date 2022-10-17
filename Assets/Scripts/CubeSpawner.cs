@@ -5,6 +5,8 @@ namespace CubeMoving
 {
 	public class CubeSpawner : MonoBehaviour
 	{
+		public static CubeSpawner instance;
+
 		public InputField spawnInterval;
 		public InputField movementSpeed;
 		public InputField destroyDistance;
@@ -15,8 +17,20 @@ namespace CubeMoving
 		private float distance;
 		private float nextTime = 0.0f;
 
+		public float Speed
+		{
+			get { return speed; }
+		}
+
+		public float Distance
+		{
+			get { return distance; }
+		}
+
 		private void Start()
 		{
+			instance = this;
+
 			GenerateValues();
 		}
 
@@ -42,7 +56,6 @@ namespace CubeMoving
 			CubeMovement cubeMovement = cube.AddComponent<CubeMovement>();
 			cube.GetComponent<Renderer>().material = cubeMaterial;
 			cube.transform.SetPositionAndRotation(transform.position, transform.rotation);
-			cubeMovement.Move(speed, distance);
 		}
 	}
 }
